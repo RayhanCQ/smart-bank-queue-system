@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <thread>
 #include <mutex>
+#include <iomanip>
 
 using namespace std;
 
@@ -100,7 +101,7 @@ void panggilNasabah()
     cout << "Sedang Melayani:\n";
     cout << "Nama      : " << n.nama << endl;
     cout << "Rekening  : " << n.nomorRekening << endl;
-    cout << "Saldo     : Rp" << n.saldo << endl;
+    cout << "Saldo     : Rp"<< fixed << setprecision(0) << n.saldo << endl;
     cout << "================================\n";
 }
 
@@ -110,26 +111,21 @@ void panggilNasabah()
 void cariRekening()
 {
     int rekening;
-
     cout << "\nMasukkan Nomor Rekening: ";
     cin >> rekening;
-
     int idx = binarySearchRekening(rekening);
-
     if (idx == -1)
     {
         cout << "Data tidak ditemukan.\n";
         return;
     }
-
     cout << "\nData Ditemukan\n";
     cout << "Nama      : "
          << daftarNasabah[idx].nama << endl;
-
     cout << "Rekening  : "
          << daftarNasabah[idx].nomorRekening << endl;
-
     cout << "Saldo     : Rp"
+         << fixed << setprecision(0)
          << daftarNasabah[idx].saldo << endl;
 }
 
@@ -190,6 +186,7 @@ void prosesTransaksi()
 
     cout << "\nTransaksi berhasil.\n";
     cout << "Saldo sekarang : Rp"
+         << fixed << setprecision(0)
          << daftarNasabah[idx].saldo << endl;
 }
 
